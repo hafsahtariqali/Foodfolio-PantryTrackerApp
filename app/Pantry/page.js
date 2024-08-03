@@ -281,11 +281,11 @@ const Pantry = () => {
                   <TableCell align="center" sx={{ fontSize: '0.78rem' }}>{item.expiration}</TableCell>
                   <TableCell align="center" sx={{ fontSize: '0.875rem' }}>
                     <Stack direction="row" spacing={1} justifyContent="center">
+                     <Fab size="small" color="error" aria-label="remove"  sx={{ width: 35, height: 25, padding: 0 }} onClick={() => decreaseQuantity(user.uid, item.name)}>
+                        <RemoveIcon sx={{ fontSize: 15 }} />
+                      </Fab>
                       <Fab size="small" color="success" aria-label="add"  sx={{ width: 35, height: 25, padding: 0 }} onClick={() => increaseQuantity(user.uid, item.name)}>
                         <AddIcon sx={{ fontSize: 15 }} />
-                      </Fab>
-                      <Fab size="small" color="error" aria-label="remove"  sx={{ width: 35, height: 25, padding: 0 }} onClick={() => decreaseQuantity(user.uid, item.name)}>
-                        <RemoveIcon sx={{ fontSize: 15 }} />
                       </Fab>
                       <Fab size="small" color="error" aria-label="delete"  sx={{ width: 35, height: 25, padding: 0 }} onClick={() => removeItem(user.uid, item.name)}>
                         <DeleteIcon sx={{ fontSize: 15 }} />
