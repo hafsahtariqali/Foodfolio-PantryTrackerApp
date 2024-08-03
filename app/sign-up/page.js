@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Stack, Link } from '@mui/material';
 import { Google as GoogleIcon, GitHub as GitHubIcon } from '@mui/icons-material';
 import { auth, googleProvider, githubProvider } from '@/firebase';
-import { createUserWithEmailAndPassword, useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth';
-import {signInWithPopup} from 'firebase/auth'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { signInWithPopup } from 'firebase/auth';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -14,6 +14,11 @@ const SignUp = () => {
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
   const handleEmailSignUp = async () => {
+    if (!email || !password) {
+      alert("Email and Password cannot be empty");
+      return;
+    }
+
     setLoading(true);
     try {
       await createUserWithEmailAndPassword(email, password);
@@ -33,7 +38,7 @@ const SignUp = () => {
     }
     setLoading(false);
   };
-  
+
   const handleGoogleSignUp = async () => {
     setLoading(true);
     try {
@@ -50,7 +55,7 @@ const SignUp = () => {
     }
     setLoading(false);
   };
-  
+
   const handleGitHubSignUp = async () => {
     setLoading(true);
     try {
@@ -71,78 +76,78 @@ const SignUp = () => {
   return (
     <React.Fragment>
       <NavBar />
-    <Box
-      width="100%"
-      height="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      sx={{ p: 2 }}
-    >
       <Box
-        sx={{
-          width: '100%',
-          maxWidth: 400,
-          p: 3,
-          borderRadius: 2,
-          boxShadow: 3,
-          backgroundColor: 'white',
-        }}
+        width="100%"
+        height="100vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ p: 2 }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
-          Sign Up
-        </Typography>
-        <Stack spacing={2} mb={2}>
-          <TextField
-            label="Email"
-            variant="outlined"
-            fullWidth
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            label="Password"
-            type="password"
-            variant="outlined"
-            fullWidth
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Stack>
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
-          onClick={handleEmailSignUp}
-          disabled={loading}
+        <Box
+          sx={{
+            width: '100%',
+            maxWidth: 400,
+            p: 3,
+            borderRadius: 2,
+            boxShadow: 3,
+            backgroundColor: 'white',
+          }}
         >
-          {loading ? 'Signing Up...' : 'Sign Up with Email'}
-        </Button>
-        <Stack spacing={2} mt={2}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Sign Up
+          </Typography>
+          <Stack spacing={2} mb={2}>
+            <TextField
+              label="Email"
+              variant="outlined"
+              fullWidth
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              label="Password"
+              type="password"
+              variant="outlined"
+              fullWidth
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Stack>
           <Button
-            variant="outlined"
+            variant="contained"
             color="primary"
             fullWidth
-            onClick={handleGoogleSignUp}
-            startIcon={<GoogleIcon />}
+            onClick={handleEmailSignUp}
+            disabled={loading}
           >
-            Sign Up with Google
+            {loading ? 'Signing Up...' : 'Sign Up with Email'}
           </Button>
-          <Button
-            variant="outlined"
-            color="secondary"
-            fullWidth
-            onClick={handleGitHubSignUp}
-            startIcon={<GitHubIcon />}
-          >
-            Sign Up with GitHub
-          </Button>
-        </Stack>
-        <Typography variant="body2" mt={2} align="center">
-          Already have an account? <Link href="/sign-in" underline="hover">Login here</Link>
-        </Typography>
+          <Stack spacing={2} mt={2}>
+            <Button
+              variant="outlined"
+              color="primary"
+              fullWidth
+              onClick={handleGoogleSignUp}
+              startIcon={<GoogleIcon />}
+            >
+              Sign Up with Google
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              onClick={handleGitHubSignUp}
+              startIcon={<GitHubIcon />}
+            >
+              Sign Up with GitHub
+            </Button>
+          </Stack>
+          <Typography variant="body2" mt={2} align="center">
+            Already have an account? <Link href="/sign-in" underline="hover">Login here</Link>
+          </Typography>
+        </Box>
       </Box>
-    </Box>
     </React.Fragment>
   );
 };
