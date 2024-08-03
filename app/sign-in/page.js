@@ -36,7 +36,7 @@ const SignIn = () => {
           alert("Invalid credentials. Please check your input and try again.");
           break;
         default:
-          alert(`Error signing in with email: ${error.message}`);
+          alert("Error signing in with email: ${error.message}");
       }
     }
     setLoading(false);
@@ -140,7 +140,7 @@ const SignIn = () => {
           </Button>
         </Stack>
         <Typography variant="body2" mt={2} align="center">
-          Don't have an account? <Link href="/sign-up" underline="hover">Sign Up here</Link>
+          Don&apos;t have an account?<Link href="/sign-up" underline="hover">Sign Up here</Link>
         </Typography>
       </Box>
     </Box>
