@@ -6,7 +6,7 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata = {
   title: "Foodfolio",
-  description: "Effortlessly manage your pantry with Pantry Pal. Track, add, and organize your items with a user-friendly interface designed to simplify your life.",
+  description: "Monitor your pantry inventory, minimize food waste, and stay informed about your stock. FoodFolio assists you in organizing your pantry effectively, so you always have the essentials on hand.",
 };
 
 export default function RootLayout({ children }) {
